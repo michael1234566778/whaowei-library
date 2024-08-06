@@ -1,0 +1,76 @@
+/* Tag selectors */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Class selectors */
+.form {
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* ID selectors */
+#username:focus,
+#password:focus,
+#isAustralian:focus,
+#reason:focus {
+  border-color: #ff6347; /* Tomato color */
+  background-color: #ffebe8; /* Light background color */
+}
+
+/* Attribute selectors */
+select[id='gender'] {
+  background-color: #d3d3d3; /* Light gray background color */
+}
+
+/* Responsive styles */
+
+/* Small screens (mobile) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+    margin-top: 10px;
+  }
+
+  .form {
+    margin-top: 20px;
+  }
+
+  .card {
+    width: 100%;
+  }
+}
+
+/* Medium screens (tablet) */
+@media (min-width: 481px) and (max-width: 768px) {
+  h1 {
+    font-size: 32px;
+    margin-top: 15px;
+  }
+
+  .form {
+    margin-top: 30px;
+  }
+
+  .card {
+    width: 90%;
+  }
+}
+
+/* Large screens (desktop) */
+@media (min-width: 769px) {
+  h1 {
+    font-size: 40px;
+    margin-top: 20px;
+  }
+
+  .form {
+    margin-top: 50px;
+  }
+
+  .card {
+    width: 18rem;
+  }
+}
