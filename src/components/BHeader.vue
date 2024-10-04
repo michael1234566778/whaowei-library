@@ -3,27 +3,54 @@
   <!-- https://getbootstrap.com/docs/5.0/examples/headers/ -->
   <div class="container">
     <header class="d-flex justify-content-center py-3">
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-          <router-link to="/" class="nav-link" active-class="active" aria-current="page"
-            >Home (Week 7)</router-link
+      <div id="app">
+        <nav class="navbar">
+          <router-link to="/" class="btn btn-primary">Home (Week 7)</router-link>
+          <router-link v-if="isAuthenticated" to="/about" class="btn btn-primary"
+            >About</router-link
           >
-        </li>
-        <li class="nav-item">
-          <router-link to="/about" class="nav-link" active-class="active">About</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/Firelogin" class="nav-link" active-class="active"
-            >Firebase Login</router-link
+          <router-link v-if="!isAuthenticated" to="/login" class="btn btn-secondary"
+            >Login</router-link
           >
-        </li>
-      </ul>
+          <button v-if="isAuthenticated" @click="logout" class="btn btn-danger">Logout</button>
+          <router-link to="/addbook" class="nav-link" active-class="active">Add Book</router-link>
+          <router-link to="/Booklist" class="nav-link" active-class="active">Booklist</router-link>
+          <router-link to="/WeatherCheck" class="nav-link" active-class="active"
+            >Get Weather</router-link
+          >
+          <router-link to="/GetBookCount" class="nav-link" active-class="active"
+            >Get Book Count</router-link
+          >
+          <router-link to="/CountBookAPI" class="nav-link" active-class="active"
+            >Count Book API</router-link
+          >
+          <router-link to="/GetAllBookAPI" class="nav-link" active-class="active"
+            >Get All Book API</router-link
+          >
+        </nav>
+      </div>
     </header>
   </div>
 </template>
+<script setup>
+import { isAuthenticated } from '@/router'
+import { useRouter } from 'vue-router'
+import { getAuth, signOut } from 'firebase/auth'
+
+const router = useRouter()
+
+const logout = async () => {
+  const auth = getAuth()
+  try {
+    await signOut(auth)
+    isAuthenticated.value = false
+    console.log('Successfully logged out')
+    router.push('/')
+  } catch (error) {
+    console.error('Error signing out:', error)
+  }
+}
+</script>
 
 <style>
 .b-example-divider {

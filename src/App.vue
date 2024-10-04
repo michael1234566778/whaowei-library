@@ -1,32 +1,30 @@
 <template>
-  <div id="app">
-    <nav class="navbar">
-      <router-link to="/" class="btn btn-primary">Home (Week 7)</router-link>
-      <router-link v-if="isAuthenticated" to="/about" class="btn btn-primary">About</router-link>
-      <router-link v-if="!isAuthenticated" to="/login" class="btn btn-secondary">Login</router-link>
-      <button v-if="isAuthenticated" @click="logout" class="btn btn-danger">Logout</button>
-    </nav>
-    <router-view />
+  <div class="main-container">
+    <header v-if="showHeader">
+      <BHeader />
+    </header>
+    <main class="main-box">
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
-<script setup>
-import { isAuthenticated } from './router'
-import { useRouter } from 'vue-router'
-import { getAuth, signOut } from 'firebase/auth'
+<script>
+import BHeader from './components/BHeader.vue'
+import CountBookAPI from './views/CountBookAPI.vue'
 
-const logout = async () => {
-  const auth = getAuth()
-  try {
-    await signOut(auth)
-    isAuthenticated.value = false
-    console.log('Successfully logged out')
-    router.push('/')
-  } catch (error) {
-    console.error('Error signing out:', error)
+export default {
+  name: 'App',
+  components: {
+    BHeader,
+    CountBookAPI
+  },
+  computed: {
+    showHeader() {
+      return this.$route.name !== 'CountBookAPI'
+    }
   }
 }
-const router = useRouter()
 </script>
 
 <style>
