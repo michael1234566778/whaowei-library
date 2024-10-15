@@ -14,73 +14,71 @@ import CountBookAPI from '@/views/CountBookAPI.vue'
 import GetAllBookAPI from '@/views/GetAllBookAPI.vue'
 export const isAuthenticated = ref(false)
 
-const routes = [
-  {
-    path: '/WeatherCheck',
-    name: 'WeatherCheck',
-    component: WeatherView
-  },
-  {
-    path: '/GetAllBookAPI',
-    name: 'GetAllBookAPI',
-    component: GetAllBookAPI
-  },
-  {
-    path: '/CountBookAPI',
-    name: 'CountBookAPI',
-    component: CountBookAPI
-  },
-  {
-    path: '/booklist',
-    name: 'BookList',
-    component: BookList
-  },
-  {
-    path: '/FirebaseLogin',
-    name: 'FirebaseLogin',
-    component: FirebaseSigninView
-  },
-  {
-    path: '/FirebaseRegister',
-    name: 'FirebaseRegister',
-    component: FirebaseRegisterView
-  },
-  {
-    path: '/',
-    name: 'Home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: AboutView,
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: LoginView
-  },
-  {
-    path: '/access-denied',
-    name: 'AccessDenied',
-    component: AccessDeniedView
-  },
-  {
-    path: '/addbook',
-    name: 'AddBook',
-    component: AddBookView
-  },
-  {
-    path: '/GetBookCount',
-    name: 'GetBookCount',
-    component: GetBookCountView
-  }
-]
-
 const router = createRouter({
-  history: createWebHistory(),
-  routes
+  history: createWebHistory(process.env.whaowei - library),
+  routes: [
+    {
+      path: '/WeatherCheck',
+      name: 'WeatherCheck',
+      component: WeatherView
+    },
+    {
+      path: '/GetAllBookAPI',
+      name: 'GetAllBookAPI',
+      component: GetAllBookAPI
+    },
+    {
+      path: '/CountBookAPI',
+      name: 'CountBookAPI',
+      component: CountBookAPI
+    },
+    {
+      path: '/booklist',
+      name: 'BookList',
+      component: BookList
+    },
+    {
+      path: '/FirebaseLogin',
+      name: 'FirebaseLogin',
+      component: FirebaseSigninView
+    },
+    {
+      path: '/FirebaseRegister',
+      name: 'FirebaseRegister',
+      component: FirebaseRegisterView
+    },
+    {
+      path: '/',
+      name: 'Home',
+      component: HomeView
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: AboutView,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: LoginView
+    },
+    {
+      path: '/access-denied',
+      name: 'AccessDenied',
+      component: AccessDeniedView
+    },
+    {
+      path: '/addbook',
+      name: 'AddBook',
+      component: AddBookView
+    },
+    {
+      path: '/GetBookCount',
+      name: 'GetBookCount',
+      component: GetBookCountView
+    }
+  ]
 })
 
 router.beforeEach((to, from, next) => {
